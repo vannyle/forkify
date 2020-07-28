@@ -5,7 +5,8 @@ export const clearRecipe = () => {
     elements.recipe.innerHTML = '';
 }
 
-const formatCount = count => {
+const formatCount = cnt => {
+    const count = Math.round((cnt + Number.EPSILON) * 100) / 100;
     if (count) {
         // count = 2.5 => 2 1/2
         // count = 0.5 => 1/2
