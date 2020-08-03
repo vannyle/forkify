@@ -18,7 +18,6 @@ Global state of the app:
 
 // SEARCH CONTROLLER
 const state = {};
-window.state = state;
 
 const controlSearch = async () => {
     // 1. Get query from the view
@@ -63,7 +62,6 @@ elements.searchResPages.addEventListener('click', e => {
 const controlRecipe = async () => {
     // Get ID from URL
     const id = window.location.hash.replace('#', '');
-    console.log(id);
 
     if(id) {
         // Prepare UI for changes
@@ -98,11 +96,6 @@ const controlRecipe = async () => {
 ['hashchange', 'load'].forEach(e => window.addEventListener(e, controlRecipe));
 
 // LIST CONTROLLER
-
-//TESTING
-state.likes = new Likes();
-likesView.toggleLikeMenu(state.likes.getNumLikes());
-
 const controlList = () => {
     // Create a new list IF there is none yet
     if (!state.list) state.list = new List();
@@ -150,7 +143,7 @@ const controlLike = () => {
         // Add to the UI list
         likesView.renderLike(newLike);
 
-        // User HAS liked current recipe yet
+        // User HAS liked current recipe
     } else {
         // Remove like from the data
         state.likes.deleteLike(currentID);
@@ -164,6 +157,18 @@ const controlLike = () => {
     likesView.toggleLikeMenu(state.likes.getNumLikes());
 }
 
+window.addEventListener('load',() => {
+    state.likes = new Likes();
+
+    //Restore likes
+    state.likes.readStorage();
+
+    //Toggle like menu button
+    likesView.toggleLikeMenu(state.likes.getNumLikes());
+
+    // Render the exist likes
+    state.likes.likes.forEach(like => likesView.renderLike(like));
+})
 
 // Handling recipe button clicks
 elements.recipe.addEventListener('click', e => {
