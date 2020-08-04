@@ -36,7 +36,13 @@ export default class Likes {
     }
 
     readStorage() {
-        const storage = JSON.parse(localStorage.getItem('likes'));
+        let storage = null;
+        try {
+            storage = JSON.parse(localStorage.getItem('likes'));
+        } catch (e) {
+            localStorage.removeItem('likes')
+        }
+
         if (storage) this.likes = storage;
     }
 }

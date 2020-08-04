@@ -32,3 +32,8 @@ export const clearLoader = () => {
         loader.parentElement.removeChild(loader);
     }
 }
+
+export const persistData = () => {
+    localStorage.setItem('list', JSON.stringify(this.items));
+    localStorage.setItem('likes', JSON.stringify(this.likes));
+}

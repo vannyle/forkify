@@ -177,15 +177,24 @@ const controlLike = () => {
 
 window.addEventListener('load', () => {
     state.likes = new Likes();
+    state.list = new List();
 
-    //Restore likes
+    //Restore likes and shopping list
     state.likes.readStorage();
+    state.list.readShoppingStorage();
 
     //Toggle like menu button
     likesView.toggleLikeMenu(state.likes.getNumLikes());
 
-    // Render the exist likes
-    state.likes.likes.forEach(like => likesView.renderLike(like))
+
+    // Render the exist likes and shopping list
+    state.likes.likes.forEach(like => likesView.renderLike(like));
+
+    state.list.items.forEach(item => listView.renderItem(item));
+    if (state.list.items.length > 0) {
+        listView.renderDeleteBtn();
+    }
+
 })
 
 // Handling recipe button clicks
