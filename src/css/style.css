@@ -442,7 +442,7 @@ body {
   flex-direction: column; }
   .shopping__list {
     list-style: none;
-    max-height: 77rem;
+    /*max-height: 77rem;*/
     overflow: scroll; }
   .shopping__item {
     display: flex;
@@ -490,3 +490,12 @@ body {
   .shopping__item:hover .shopping__delete {
     opacity: 1;
     visibility: visible; }
+
+.btn-delete-all {
+  margin: 30px auto 0;
+  z-index: 1;
+}
+
+.btn-delete-all svg {
+  pointer-events: none;
+}

@@ -9,6 +9,7 @@ module.exports = {
         filename: 'js/bundle.js'
     },
     devtool: false,
+    // devtool: 'eval-source-map',
     devServer: {
         contentBase: ('./dist'),
         compress: true,
@@ -35,6 +36,10 @@ module.exports = {
                     // ['source-map-loader'],
                     loader: 'babel-loader'
                 },
+            },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
             },
         ],
     },
